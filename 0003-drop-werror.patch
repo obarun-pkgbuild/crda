@@ -1,0 +1,12 @@
+diff -u a/Makefile b/Makefile
+--- a/Makefile	2016-09-06 14:00:34.000000000 +0400
++++ b/Makefile	2016-09-06 14:06:51.179501571 +0400
+@@ -26,7 +26,7 @@
+ RUNTIME_PUBKEY_DIR?=/etc/wireless-regdb/pubkeys
+ 
+ CFLAGS += -O2 -fpic
+-CFLAGS += -std=gnu99 -Wall -Werror -pedantic
++CFLAGS += -std=gnu99 -Wall -pedantic
+ CFLAGS += -Wall -g
+ LDLIBREG += -lreg
+ LDLIBS += $(LDLIBREG)
