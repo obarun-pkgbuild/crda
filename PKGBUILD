@@ -3,7 +3,7 @@
 # 						Maintainer: Thomas Bächler <thomas@archlinux.org>
 
 pkgname=crda
-pkgver=3.18
+pkgver=4.14
 pkgrel=2
 pkgdesc="Central Regulatory Domain Agent for wireless networks"
 arch=(x86_64)
@@ -12,16 +12,14 @@ license=('custom')
 depends=('wireless-regdb' 'libnl' 'libgcrypt' 'iw')
 makedepends=('python2-m2crypto')
 install=crda.install
-source=(https://kernel.org/pub/software/network/crda/${pkgname}-${pkgver}.tar.xz
+source=("https://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/crda.git/snapshot/crda-$pkgver.tar.gz"
         set-wireless-regdom
         0001-Makefile-Link-libreg.so-against-the-crypto-library.patch
-        0001-Makefile-Don-t-run-ldconfig.patch
-        0003-drop-werror.patch)
-sha256sums=('43fcb9679f8b75ed87ad10944a506292def13e4afb194afa7aa921b01e8ecdbf'
+        0001-Makefile-Don-t-run-ldconfig.patch)
+sha256sums=('5a8f35bb8b27474f466b0e75d451ba917433d8aab1889678a64d9c4e72a8b8c2'
             '603ce97da5cce3f5337e99007ce04e2f295bb33a36b308794884011f7bcabaf3'
             '96b2068b27202f8bc78009869520e396cb3f3ac7a826efef06d0fc41047f2520'
-            'ff52990cf9295e5cebcf07ebbf2a96e225d97088573edcc898b29ce33a0fb663'
-            '68809166dd0112a057ca253f772c4adfc9d60a71e38bd1c40d0ed9885bec7fc6')
+            'ff52990cf9295e5cebcf07ebbf2a96e225d97088573edcc898b29ce33a0fb663')
 validpgpkeys=('6DD4217456569BA711566AC7F06E8FDE7B45DAAC') # Eric Vidal
 
 prepare() {
@@ -29,7 +27,6 @@ prepare() {
   sed 's|^#!/usr/bin/env python|#!/usr/bin/python2|' -i utils/key2pub.py
   patch -p1 -i "${srcdir}"/0001-Makefile-Link-libreg.so-against-the-crypto-library.patch
   patch -p1 -i "${srcdir}"/0001-Makefile-Don-t-run-ldconfig.patch
-  patch -p1 -i "${srcdir}"/0003-drop-werror.patch
 }
 
 build() {
